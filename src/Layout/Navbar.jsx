@@ -1,15 +1,53 @@
-// src/components/Navbar.jsx
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useWebContext } from "../context/WebContext";
+import axios from "axios";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(false); // Simulated auth state
-
+  const navigate = useNavigate();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const { API_LINK, isLogin, setIsLogin } = useWebContext();
+  const getUserInfo = async () => {
+    try {
+      const userInfo = await axios.get(
+        `${API_LINK}/api/auth/get-account-info`,
+        {
+          withCredentials: true,
+        }
+      );
+      if (userInfo.data.user.username) {
+        setIsLogin(true);
+      }
+    } catch (error) {
+      console.log(
+        "There are some errors in your getUserInfo controller plz fix the bug first ",
+        error
+      );
+      alert(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+  const handleLogout = async () => {
+    try {
+      await axios.get(`${API_LINK}/api/auth/logout`, {
+        withCredentials: true,
+      });
+      setIsLogin(false);
+      window.location.reload();
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert("Error during logout");
+    }
   };
 
   return (
@@ -43,7 +81,13 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               className="hover:text-green-400 transition"
             >
-              <Link to="/login-page">Login</Link>
+              {isLogin ? (
+                <button onClick={handleLogout} className="cursor-pointer">
+                  Logout
+                </button>
+              ) : (
+                <Link to="/login-page">Login</Link>
+              )}
             </motion.div>
 
             <motion.div
@@ -85,13 +129,13 @@ const Navbar = () => {
           >
             EV Map
           </Link>
-          <Link
-            to="/authentication"
-            onClick={toggleMenu}
-            className="block hover:text-green-400"
-          >
-            Login
-          </Link>
+          {isLogin ? (
+            <button onClick={handleLogout} className="cursor-pointer">
+              Logout
+            </button>
+          ) : (
+            <Link to="/login-page">Login</Link>
+          )}
 
           <Link
             to="/admin-page"

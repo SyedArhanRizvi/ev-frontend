@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaMapMarkedAlt, FaInfoCircle } from "react-icons/fa";
 function Home() {
+
+ 
+
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 bg-gray-900 text-white gap-10 md:gap-16">
       {/* Left side: Image */}

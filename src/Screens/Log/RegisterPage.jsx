@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useWebContext } from "../../context/WebContext";
+import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
 function RegisterPage() {
+  const navigate = useNavigate();
+  const { API_LINK } = useWebContext();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -14,7 +20,7 @@ function RegisterPage() {
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -26,9 +32,21 @@ function RegisterPage() {
       setErrors(newErrors);
       return;
     }
-
-    alert("Registration successful!");
-    // API call here
+    try {
+      const registerUser = await axios.post(
+        `${API_LINK}/api/auth/create-new-account`,
+        formData,
+        {
+          withCredentials: true,
+        }
+      );
+      if (registerUser.status === 201) {
+        navigate("/ev-map");
+      }
+    } catch (error) {
+      console.log("There are some errors during user registration.", error);
+      alert(error.message);
+    }
   };
 
   return (

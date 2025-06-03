@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useWebContext } from '../../context/WebContext';
+import axios from 'axios';
 
 function LoginPage() {
+  
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
 
+  const { API_LINK } = useWebContext();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: '' });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -22,8 +27,22 @@ function LoginPage() {
       setErrors(newErrors);
       return;
     }
-
-    alert('Logged in successfully!');
+    try {
+      const registerUser = await axios.post(
+        `${API_LINK}/api/auth/login-account`,
+        formData, {
+          withCredentials:true
+        }
+      );
+      console.log(registerUser.status);
+      
+      if (registerUser.status == 200) {
+        navigate('/ev-map');
+      }
+    } catch (error) {
+      console.log("There are some errors during user login.", error);
+      alert(error.message);
+    }
   };
 
   return (
