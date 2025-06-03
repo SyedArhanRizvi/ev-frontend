@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function RegisterPage() {
   const navigate = useNavigate();
-  const { API_LINK } = useWebContext();
+  const { API_LINK, setIsLogin } = useWebContext();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -40,6 +40,7 @@ function RegisterPage() {
           withCredentials: true,
         }
       );
+      setIsLogin(true)
       if (registerUser.status === 201) {
         navigate("/ev-map");
       }
@@ -60,7 +61,7 @@ function RegisterPage() {
           transition={{ duration: 0.6 }}
         >
           <img
-            src="../../../public/ev2.jpeg"
+            src="/ev2.jpeg"
             alt="EV Station"
             className="w-full max-w-sm mx-auto rounded-xl shadow-lg mb-6"
           />

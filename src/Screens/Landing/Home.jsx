@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import { FaMapMarkedAlt, FaInfoCircle } from "react-icons/fa";
 function Home() {
 
- 
-
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 bg-gray-900 text-white gap-10 md:gap-16">
       {/* Left side: Image */}
       <div className="w-full md:w-1/2 flex justify-center">
         <img
-          src="../../../public/ev1.jpeg"
+          src="/ev1.jpeg"
           alt="Electric Vehicle"
           className="rounded-2xl shadow-xl w-full max-w-md md:max-w-lg object-cover"
         />
@@ -52,7 +50,7 @@ function Home() {
           transition={{ delay: 0.8 }}
         >
           {/* Go to Map Button */}
-          <Link to="/map">
+          <Link to="/ev-map">
             <button
               className="group flex items-center justify-center gap-2 
                bg-green-500 hover:bg-green-600 active:scale-95 
@@ -65,7 +63,7 @@ function Home() {
             </button>
           </Link>
 
-          <Link to="/about">
+          <Link to="/">
             <button
               className="group flex items-center justify-center gap-2 
                border border-white hover:bg-white hover:text-gray-900 

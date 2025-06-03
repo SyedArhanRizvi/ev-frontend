@@ -29,7 +29,6 @@ const Navbar = () => {
         "There are some errors in your getUserInfo controller plz fix the bug first ",
         error
       );
-      alert(error.message);
     }
   };
 

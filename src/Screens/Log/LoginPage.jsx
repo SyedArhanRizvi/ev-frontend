@@ -10,7 +10,7 @@ function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
 
-  const { API_LINK } = useWebContext();
+  const { API_LINK, setIsLogin } = useWebContext();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: '' });
@@ -35,7 +35,7 @@ function LoginPage() {
         }
       );
       console.log(registerUser.status);
-      
+      setIsLogin(true);
       if (registerUser.status == 200) {
         navigate('/ev-map');
       }
