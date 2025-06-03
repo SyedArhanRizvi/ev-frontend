@@ -61,7 +61,6 @@ const Navbar = () => {
             <Link to="/">⚡ EV Booster</Link>
           </motion.div>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 gap-10">
             <motion.div
               whileHover={{ scale: 1.1 }}
@@ -97,7 +96,6 @@ const Navbar = () => {
             </motion.div>
           </div>
 
-          {/* Mobile Toggle Button */}
           <div className="md:hidden flex items-center">
             <button onClick={toggleMenu}>
               {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
@@ -106,7 +104,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <motion.div
           className="md:hidden bg-gray-800 px-4 py-2 space-y-2"

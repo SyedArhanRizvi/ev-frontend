@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 bg-gray-900 text-white gap-10 md:gap-16">
-      {/* Left side: Image */}
+      
       <div className="w-full md:w-1/2 flex justify-center">
         <img
           src="/ev1.jpeg"
@@ -15,7 +15,6 @@ function Home() {
         />
       </div>
 
-      {/* Right side: Content */}
       <motion.div
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
@@ -49,7 +48,7 @@ function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
         >
-          {/* Go to Map Button */}
+          
           <Link to="/ev-map">
             <button
               className="group flex items-center justify-center gap-2 

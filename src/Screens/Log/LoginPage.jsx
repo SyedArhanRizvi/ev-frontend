@@ -70,7 +70,7 @@ function LoginPage() {
             {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
           </div>
 
-          {/* Password */}
+          
           <div>
             <label className="block text-gray-300 mb-2 text-lg font-medium">Password</label>
             <input
@@ -84,7 +84,6 @@ function LoginPage() {
             {errors.password && <p className="text-red-400 text-sm mt-1">{errors.password}</p>}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full h-12 bg-green-500 hover:bg-green-600 transition duration-300 rounded-md text-white font-semibold shadow-lg text-lg"
@@ -93,7 +92,6 @@ function LoginPage() {
           </button>
         </form>
 
-        {/* Bottom Link */}
         <p className="mt-8 text-center text-gray-400 text-base">
           Don't have an account?{' '}
           <Link to="/register-page" className="text-green-400 hover:text-green-600 font-semibold">

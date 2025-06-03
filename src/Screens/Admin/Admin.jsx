@@ -31,7 +31,6 @@ function Admin() {
   useEffect(() => {
     getAllEVStations();
   }, []);
-  // Form state
   const [formVisible, setFormVisible] = useState(false);
   const [editingStation, setEditingStation] = useState(null);
   const [formData, setFormData] = useState({
@@ -110,21 +109,20 @@ function Admin() {
 
     try {
       if (editingStation) {
-        //Update station via PUT request
+        
         const res = await axios.put(
           `${API_LINK}/api/charging-station/update-prev-charging-station/${editingStation._id}`,
           stationData
         );
         console.log(res);
 
-        // Update local state
         setStations((prev) =>
           prev.map((st) =>
             st._id === editingStation._id ? res.data.updatedStation : st
           )
         );
       } else {
-        // Add new station via POST request
+        
         const res = await axios.post(
           `${API_LINK}/api/charging-station/add-new-charging-station`,
           stationData
@@ -391,7 +389,7 @@ function Admin() {
 
               <p className="mb-2 text-gray-400 font-semibold">Location</p>
 
-              {/* Current Location Button */}
+            
               <button
                 type="button"
                 onClick={getCurrentLocation}
@@ -407,7 +405,6 @@ function Admin() {
                 Or enter address manually to get coordinates:
               </p>
 
-              {/* Address Input + Geocode Button */}
               <div className="flex gap-2 mb-3">
                 <input
                   type="text"

@@ -52,7 +52,7 @@ function RegisterPage() {
 
   return (
     <div className="min-h-screen flex flex-col  md:flex-row bg-gray-900 text-white">
-      {/* Left Side - Image and Text */}
+  
       <div className="md:w-1/2 w-full flex items-center justify-center bg-gray-800 p-6">
         <motion.div
           className="text-center"
@@ -75,7 +75,6 @@ function RegisterPage() {
         </motion.div>
       </div>
 
-      {/* Right Side - Form */}
       <div className="md:w-1/2 w-full flex items-center justify-center px-6 py-12">
         <motion.div
           className="w-full max-w-md"
@@ -88,7 +87,7 @@ function RegisterPage() {
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Username */}
+            
             <div>
               <label className="block text-gray-300 mb-1">Username</label>
               <input
@@ -104,7 +103,6 @@ function RegisterPage() {
               )}
             </div>
 
-            {/* Email */}
             <div>
               <label className="block text-gray-300 mb-1">Email</label>
               <input
@@ -120,7 +118,6 @@ function RegisterPage() {
               )}
             </div>
 
-            {/* Password */}
             <div>
               <label className="block text-gray-300 mb-1">Password</label>
               <input
@@ -136,7 +133,6 @@ function RegisterPage() {
               )}
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               className="w-full bg-green-500 hover:bg-green-600 transition duration-300 py-2 rounded-md text-white font-semibold shadow-lg"
